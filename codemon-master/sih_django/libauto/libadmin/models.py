@@ -6,3 +6,5 @@ class books_info(models.Model):
 	book_author = models.CharField(max_length = 50)
 	book_publication = models.CharField(max_length = 50)
 	book_title = models.CharField(max_length = 40)
+	def __str__(self):
+		return self.book_title
