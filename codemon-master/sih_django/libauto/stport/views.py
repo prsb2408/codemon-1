@@ -1,9 +1,25 @@
 from django.shortcuts import render
+from stport.models import student_info
 def feedback(request):
 	return render(request, 'feedback.html')
 def login(request):
-	return render(request,"login.html")
+	if request.method=="POST":
+		uname= request.POST.get('uname','')
+		psw = request.POST.get('psw', '')
+		print(uname,psw, sep = " ")
+	return render(request,"login.html")	
 def register(request):
+	if request.method == "POST":
+		email = request.POST.get('email','')
+		psw = request.POST.get('psw','')
+		remail= request.POST.get('remail','')
+		rpsw = request.POST.get('rpsw')
+		name = request.POST.get('name')
+		phone = request.POST.get('phone')
+		street = request.POST.get('street')
+		city = request.POST.get('city')
+		stud_ID = student_info(student_email = email, student_password = psw, student_name = name, student_phone = phone, student_street = street, student_city = city)
+		stud_ID.save()
 	return render(request,'register.html')
 def detail(request):
 	return render(request,'detail.html')
